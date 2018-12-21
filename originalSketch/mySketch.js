@@ -1,7 +1,7 @@
-var levels = 18;
-var drawLevel;
+const levels = 18;
+let drawLevel;
 
-var points;
+let points;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
