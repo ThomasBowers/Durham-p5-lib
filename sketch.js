@@ -6,7 +6,7 @@ class Tree{
         this.points = [];
         this.color = color;
         this._drawLevel = this.levels;
-        this._initialPos = position;
+        this._initialPos = createVector(position, height);
         this.bLength = bLength;
         this._bgColor = bgColor;
         for (let i = 0; i <= this.levels; i++) {
@@ -25,7 +25,7 @@ class Tree{
         let currentPos = createVector(0,-level*this.bLength).rotate(angle).add(lastPos);
 
         // other base case, if branch is under ground
-        if (currentPos.copy().sub(createVector(mouseX,mouseY)).y > canvas.height) return;
+        if (currentPos.copy().sub(createVector(mouseX,mouseY)).y > height) return;
 
         // add the line start end location into the level's array
         this.points[level].push({
@@ -68,8 +68,13 @@ function removeAll() {
     trees = [];
     clear();
 }
-function removeOne() {
+function removeLast() {
     trees.pop()
+    clear();
+}
+function removeRandom() {
+    let s = Math.floor(Math.random() * trees.length);
+    trees.splice(s,1)
     clear();
 }
 function forest() {
@@ -77,12 +82,12 @@ function forest() {
      while(x < num_trees){
         c_num = Math.floor(Math.random() * color.length);
         bLength = Math.floor(Math.random() * 6)+1;
-        trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(canvas.width * Math.random(),canvas.height), bLength));
+        trees.push(new Tree(12, 60, 255, color[c_num] ,width * Math.random(), bLength));
         x++;
     }
 }
 function tree() {
-    trees.push(new Tree(12, 60, 255, color[3] ,createVector((canvas.width/2),canvas.height), 5));
+    trees.push(new Tree(12, 60, 255, color[3] ,(width/2), 5));
 
 }
 function orchard() {
@@ -90,7 +95,7 @@ function orchard() {
     c_num = Math.floor(Math.random() * color.length);
     bLength = Math.floor(Math.random() * 6)+1;
     while(x < num_trees){
-        trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(((w*8/(num_trees-1))*x+w),canvas.height), bLength));
+        trees.push(new Tree(12, 60, 255, color[c_num] ,((w*8/(num_trees-1))*x+w), bLength));
         x++;
     }
 }
@@ -106,7 +111,7 @@ let w;
 function setup() {
 	var canvas = createCanvas(windowWidth*0.8, windowHeight*0.6);
     canvas.parent('sketch-holder');
-    w = canvas.width * 0.1;
+    w = width * 0.1;
 }
 function draw() {
     if (trees != null){
@@ -130,7 +135,7 @@ function keyTyped() {
   }else if (key === 'f'){
       forest();
   }else if (key === 'c'){
-      removeOne();
+      removeLast();
   }
 
 }
@@ -141,6 +146,7 @@ function mousePressed() {
 function windowResized() {
     canvas.width = windowWidth*0.8;
     canvas.height = windowHeight*0.6;
+    clear();
 }
 
 
