@@ -8,7 +8,6 @@ class Tree{
         this._drawLevel = this.levels;
         this._initialPos = position;
         this.bLength = bLength;
-        console.log(this.bLength);
         this._bgColor = bgColor;
         for (let i = 0; i <= this.levels; i++) {
             this.points.push([]);
@@ -90,25 +89,55 @@ class Tree{
 }
 let trees;
 let number_trees = 8;
+let type = 3;
 function setup() {
+
 	createCanvas(windowWidth, windowHeight);
     let w = windowWidth * 0.1;
     trees = [];
 	let x = 0;
 	let c_num;
-	let color = ['red', 'green', 'blue'];
+	let color = ['red', 'green', 'blue', 'greyscale'];
 	let bLength;
-	while(x <= number_trees){
-        c_num = Math.floor(Math.random() * 3);
-        bLength = Math.floor(Math.random() * 6)+1;
-        trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(((w*8/number_trees)*x+w),windowHeight), bLength));
-        console.log("cnum " + c_num);
-        x++;
+    switch (type) {
+        case 1:
+            //draws single tree
+            trees.push(new Tree(12, 60, 255, color[3] ,createVector((windowWidth/2),windowHeight), 5));
+
+            break;
+        case 2:
+            //orchard is uniform spacing ,color and height
+            c_num = Math.floor(Math.random() * color.length);
+            bLength = Math.floor(Math.random() * 6)+1;
+            while(x <= number_trees){
+                trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(((w*8/number_trees)*x+w),windowHeight), bLength));
+                x++;
+            }
+            break;
+
+        case 3:
+            //random spacing, height and color
+            while(x <= number_trees){
+                c_num = Math.floor(Math.random() * color.length);
+                bLength = Math.floor(Math.random() * 6)+1;
+                trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(((w*8/number_trees)*x+w),windowHeight), bLength));
+                x++;
+            }
+            break;
+
+        default:
+            //just draw one greyscale tree
+            trees.push(new Tree(12, 60, 255, color[3] ,createVector((windowWidth/2),windowHeight), 5));
+
     }
+
 }
 
 function draw() {
-    for(let i = 0; i <= number_trees; i++){
+
+
+    for(let i = 0; i < trees.length; i++){
+        console.log('tree i ' + (i+1));
         trees[i].draw();
     }
 	//tree.inintialPos(createVector((windowWidth/4)*2,windowHeight));
