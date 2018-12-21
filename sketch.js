@@ -1,14 +1,12 @@
 class Tree{
-    constructor(levels, drawSpeed, bgColor, color, position, bLength){
+    constructor(levels, drawSpeed, color, position, bLength){
         frameRate(drawSpeed);
-        background(bgColor);
         this.levels = levels;
         this.points = [];
         this.color = color;
         this._drawLevel = this.levels;
         this._initialPos = createVector(position, height);
         this.bLength = bLength;
-        this._bgColor = bgColor;
         for (let i = 0; i <= this.levels; i++) {
             this.points.push([]);
         }
@@ -67,27 +65,31 @@ class Tree{
 function removeAll() {
     trees = [];
     clear();
+    setup();
 }
 function removeLast() {
     trees.pop()
     clear();
+    setup();
 }
 function removeRandom() {
     let s = Math.floor(Math.random() * trees.length);
     trees.splice(s,1)
     clear();
+    setup();
 }
 function forest() {
      x = 0;
      while(x < num_trees){
         c_num = Math.floor(Math.random() * color.length);
         bLength = Math.floor(Math.random() * 6)+1;
-        trees.push(new Tree(12, 60, 255, color[c_num] ,width * Math.random(), bLength));
+        trees.push(new Tree(12, 60, color[c_num] ,width * Math.random(), bLength));
         x++;
     }
 }
 function tree() {
-    trees.push(new Tree(12, 60, 255, color[3] ,(width/2), 5));
+    c_num = Math.floor(Math.random() * color.length);
+    trees.push(new Tree(12, 60, color[c_num] ,(width/2), 5));
 
 }
 function orchard() {
@@ -95,7 +97,7 @@ function orchard() {
     c_num = Math.floor(Math.random() * color.length);
     bLength = Math.floor(Math.random() * 6)+1;
     while(x < num_trees){
-        trees.push(new Tree(12, 60, 255, color[c_num] ,((w*8/(num_trees-1))*x+w), bLength));
+        trees.push(new Tree(12, 60, color[c_num] ,((w*8/(num_trees-1))*x+w), bLength));
         x++;
     }
 }
@@ -111,6 +113,7 @@ let w;
 function setup() {
 	var canvas = createCanvas(windowWidth*0.8, windowHeight*0.6);
     canvas.parent('sketch-holder');
+    canvas.background("#00bfff")
     w = width * 0.1;
 }
 function draw() {
@@ -146,7 +149,7 @@ function mousePressed() {
 function windowResized() {
     canvas.width = windowWidth*0.8;
     canvas.height = windowHeight*0.6;
-    clear();
+    setup();
 }
 
 

@@ -10,3 +10,4 @@ A library of reusable components for [p5js](https://p5js.org/). These are develo
    - A `.html` file which uses the .js file and demonstrates its use
    - A `README.md` file which contains the documentation for the class
 - Once everything is complete (including peer review) make a pull request from your forked repository to <https://github.com/stevenaeola/Durham-p5-lib>
+
