@@ -64,12 +64,17 @@ class Tree{
     }
 
 }
-function deforestation() {
+function removeAll() {
     trees = [];
+    clear();
 }
-function forest()
- {
-    while(x < num_trees){
+function removeOne() {
+    trees.pop()
+    clear();
+}
+function forest() {
+     x = 0;
+     while(x < num_trees){
         c_num = Math.floor(Math.random() * color.length);
         bLength = Math.floor(Math.random() * 6)+1;
         trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(windowWidth * Math.random(),windowHeight), bLength));
@@ -81,6 +86,7 @@ function tree() {
 
 }
 function orchard() {
+    x = 0;
     c_num = Math.floor(Math.random() * color.length);
     bLength = Math.floor(Math.random() * 6)+1;
     while(x < num_trees){
@@ -90,7 +96,7 @@ function orchard() {
 }
 let trees = [];
 let num_trees = 20;
-let type = 3;
+//let type = 3;
 let color = ['red', 'green', 'blue', 'greyscale'];
 let c_num;
 let bLength;
@@ -99,29 +105,7 @@ let w;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	x = 0;
 	w = windowWidth * 0.1;
-    trees = [];
-    switch (type) {
-        case 1:
-            //draws single tree
-            tree();
-            break;
-        case 2:
-            //orchard is uniform spacing ,color and height
-            orchard();
-            break;
-
-        case 3:
-            //random spacing, height and color
-            forest();
-            break;
-
-        default:
-            //just draw one greyscale tree
-            //trees.push(new Tree(12, 60, 255, color[3] ,createVector((windowWidth/2),windowHeight), 5));
-
-    }
 }
 function draw() {
     if (trees != null){
@@ -132,18 +116,22 @@ function draw() {
     else{
         console.log("No trees")
     }
-	//tree.inintialPos(createVector((windowWidth/4)*2,windowHeight));
-    //tree.setColor('green');
-    //tree.draw();
-    //tree.initialPos(createVector((windowWidth/4)*3,windowHeight));
-    //tree.setColor('blue');
-    //tree.draw();
-
 }
 
 function keyTyped() {
-  if (key === ' ')
-    setup();
+  if (key === 'r'){
+      removeAll();
+  }
+  else if (key === 't'){
+      tree();
+  }else if (key === 'o'){
+      orchard();
+  }else if (key === 'f'){
+      forest();
+  }else if (key === 'c'){
+      removeOne();
+  }
+
 }
 function mousePressed() {
 	setup();
