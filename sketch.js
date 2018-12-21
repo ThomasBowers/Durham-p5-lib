@@ -16,29 +16,6 @@ class Tree{
         this.drawY(this.levels,0,this._initialPos);
 
     }
-    set setColor(newColor){
-        this.color =newColor;
-    }
-
-    set drawLevel(value) {
-        this._drawLevel = value;
-    }
-    set initialPos(value) {
-        this._initialPos = value;
-    }
-
-
-    get initialPos() {
-        return this._initialPos;
-    }
-
-    get bgColor() {
-        return this._bgColor;
-    }
-    get drawLevel() {
-        return this._drawLevel;
-    }
-
     drawY(level,angle,lastPos) {
 
         // base case
@@ -87,9 +64,9 @@ class Tree{
     }
 
 }
-let trees;
+let trees = [];
 let number_trees = 8;
-let type = 3;
+let type = 7;
 function setup() {
 
 	createCanvas(windowWidth, windowHeight);
@@ -127,18 +104,19 @@ function setup() {
 
         default:
             //just draw one greyscale tree
-            trees.push(new Tree(12, 60, 255, color[3] ,createVector((windowWidth/2),windowHeight), 5));
+            //trees.push(new Tree(12, 60, 255, color[3] ,createVector((windowWidth/2),windowHeight), 5));
 
     }
 
 }
-
 function draw() {
-
-
-    for(let i = 0; i < trees.length; i++){
-        console.log('tree i ' + (i+1));
-        trees[i].draw();
+    if (trees != null){
+        for (let i = 0; i < trees.length; i++) {
+            trees[i].draw();
+        }
+    }
+    else{
+        console.log("No trees")
     }
 	//tree.inintialPos(createVector((windowWidth/4)*2,windowHeight));
     //tree.setColor('green');
