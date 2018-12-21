@@ -64,42 +64,57 @@ class Tree{
     }
 
 }
-let trees = [];
-let number_trees = 8;
-let type = 7;
-function setup() {
-
-	createCanvas(windowWidth, windowHeight);
-    let w = windowWidth * 0.1;
+function deforestation() {
     trees = [];
-	let x = 0;
-	let c_num;
-	let color = ['red', 'green', 'blue', 'greyscale'];
-	let bLength;
+}
+function forest()
+ {
+    while(x < num_trees){
+        c_num = Math.floor(Math.random() * color.length);
+        bLength = Math.floor(Math.random() * 6)+1;
+        trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(windowWidth * Math.random(),windowHeight), bLength));
+        x++;
+    }
+}
+function tree() {
+    trees.push(new Tree(12, 60, 255, color[3] ,createVector((windowWidth/2),windowHeight), 5));
+
+}
+function orchard() {
+    c_num = Math.floor(Math.random() * color.length);
+    bLength = Math.floor(Math.random() * 6)+1;
+    while(x < num_trees){
+        trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(((w*8/(num_trees-1))*x+w),windowHeight), bLength));
+        x++;
+    }
+}
+let trees = [];
+let num_trees = 20;
+let type = 3;
+let color = ['red', 'green', 'blue', 'greyscale'];
+let c_num;
+let bLength;
+let x;
+let w;
+
+function setup() {
+	createCanvas(windowWidth, windowHeight);
+	x = 0;
+	w = windowWidth * 0.1;
+    trees = [];
     switch (type) {
         case 1:
             //draws single tree
-            trees.push(new Tree(12, 60, 255, color[3] ,createVector((windowWidth/2),windowHeight), 5));
-
+            tree();
             break;
         case 2:
             //orchard is uniform spacing ,color and height
-            c_num = Math.floor(Math.random() * color.length);
-            bLength = Math.floor(Math.random() * 6)+1;
-            while(x <= number_trees){
-                trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(((w*8/number_trees)*x+w),windowHeight), bLength));
-                x++;
-            }
+            orchard();
             break;
 
         case 3:
             //random spacing, height and color
-            while(x <= number_trees){
-                c_num = Math.floor(Math.random() * color.length);
-                bLength = Math.floor(Math.random() * 6)+1;
-                trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(((w*8/number_trees)*x+w),windowHeight), bLength));
-                x++;
-            }
+            forest();
             break;
 
         default:
@@ -107,7 +122,6 @@ function setup() {
             //trees.push(new Tree(12, 60, 255, color[3] ,createVector((windowWidth/2),windowHeight), 5));
 
     }
-
 }
 function draw() {
     if (trees != null){
