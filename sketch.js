@@ -25,7 +25,7 @@ class Tree{
         let currentPos = createVector(0,-level*this.bLength).rotate(angle).add(lastPos);
 
         // other base case, if branch is under ground
-        if (currentPos.copy().sub(createVector(mouseX,mouseY)).y > windowHeight) return;
+        if (currentPos.copy().sub(createVector(mouseX,mouseY)).y > canvas.height) return;
 
         // add the line start end location into the level's array
         this.points[level].push({
@@ -77,12 +77,12 @@ function forest() {
      while(x < num_trees){
         c_num = Math.floor(Math.random() * color.length);
         bLength = Math.floor(Math.random() * 6)+1;
-        trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(windowWidth * Math.random(),windowHeight), bLength));
+        trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(canvas.width * Math.random(),canvas.height), bLength));
         x++;
     }
 }
 function tree() {
-    trees.push(new Tree(12, 60, 255, color[3] ,createVector((windowWidth/2),windowHeight), 5));
+    trees.push(new Tree(12, 60, 255, color[3] ,createVector((canvas.width/2),canvas.height), 5));
 
 }
 function orchard() {
@@ -90,7 +90,7 @@ function orchard() {
     c_num = Math.floor(Math.random() * color.length);
     bLength = Math.floor(Math.random() * 6)+1;
     while(x < num_trees){
-        trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(((w*8/(num_trees-1))*x+w),windowHeight), bLength));
+        trees.push(new Tree(12, 60, 255, color[c_num] ,createVector(((w*8/(num_trees-1))*x+w),canvas.height), bLength));
         x++;
     }
 }
@@ -104,8 +104,9 @@ let x;
 let w;
 
 function setup() {
-	createCanvas(windowWidth, windowHeight);
-	w = windowWidth * 0.1;
+	var canvas = createCanvas(windowWidth*0.8, windowHeight*0.6);
+    canvas.parent('sketch-holder');
+    w = canvas.width * 0.1;
 }
 function draw() {
     if (trees != null){
@@ -136,5 +137,11 @@ function keyTyped() {
 function mousePressed() {
 	setup();
 }
+
+function windowResized() {
+    canvas.width = windowWidth*0.8;
+    canvas.height = windowHeight*0.6;
+}
+
 
 
