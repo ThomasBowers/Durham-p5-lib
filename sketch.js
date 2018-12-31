@@ -95,6 +95,28 @@ function forest() {
         x++;
     }
 }
+function addTrees() {
+    let randomSpacing = document.getElementById("randomSpacing").checked;
+    let variedHeight = document.getElementById("variedHeight").checked;
+    x = 0;
+    num_trees = document.getElementById("numTrees").value;
+    c_num = document.getElementById("color").value - 1;
+    bLength = Math.floor(Math.random() * 6) + 4;
+    let spacing;
+    while (x < num_trees) {
+        if(variedHeight) {
+            bLength = Math.floor(Math.random() * 6) + 4;
+        }
+        if (randomSpacing) {
+             spacing = width * Math.random();
+        }
+        else{
+           spacing = ((w * 8 / (num_trees - 1)) * x + w);
+        }
+        trees.push(new Tree(12, 60, color[c_num], spacing, bLength));
+        x++;
+    }
+}
 /*
 function rTree() {
     bLength = Math.floor(Math.random() * 6) + 4;
