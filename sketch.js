@@ -150,7 +150,18 @@ function setup() {
     w = width * 0.1;
     colorMode(HSB, 100)
 }
-
+function allRed() {
+    if (trees != null) {
+        for (let i = 0; i < trees.length; i++) {
+            trees[i].color = 1
+            clear();
+            setup();
+        }
+    }
+    else {
+        console.log("No trees")
+    }
+}
 function draw() {
     if (trees != null) {
         for (let i = 0; i < trees.length; i++) {
