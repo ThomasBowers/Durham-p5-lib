@@ -1,7 +1,4 @@
 let trees = [];
-let num_trees = 20;
-let c_num;
-let bLength;
 let x;
 let w;
 
@@ -143,8 +140,6 @@ function addTrees() {
         trees.push(new Tree(12, 60, c_num, spacing, bLength));
         x++;
     }
-    console.log('added')
-    console.log(trees)
 }
 
 
