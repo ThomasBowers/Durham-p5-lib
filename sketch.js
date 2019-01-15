@@ -1,6 +1,5 @@
 let trees = [];
 let num_trees = 20;
-let color = ['red', 'green', 'blue', 'greyscale'];
 let c_num;
 let bLength;
 let x;
@@ -17,7 +16,8 @@ class Tree {
         this.changeUpdate();
         this.drawY(this._levels, 0, this._initialPos);
     }
-    changeUpdate(){
+
+    changeUpdate() {
         this.points = [];
         for (let i = 0; i <= this._levels; i++) {
             this.points.push([]);
@@ -29,26 +29,32 @@ class Tree {
     get position() {
         return this._position;
     }
+
     set position(value) {
         this._position = value;
         this.changeUpdate();
     }
+
     get bLength() {
         return this._bLength;
     }
+
     set bLength(value) {
         this._bLength = value;
         this.changeUpdate();
 
     }
+
     get levels() {
         return this._levels;
     }
+
     set levels(value) {
         this._levels = value;
         this.changeUpdate();
 
     }
+
     get color() {
         return this._color;
     }
@@ -88,26 +94,11 @@ class Tree {
         for (let v = this._levels; v > 0; v--) {
             for (let c = 0; c < this.points[v].length; c++) {
                 strokeWeight(v);
-
-                if (this._color == 'red') {
-                    stroke(map(v, 0, this._levels, 250, 0), 0, 0);
-                }
-                else if (this._color == 'green') {
-                    stroke(0, map(v, 0, this._levels, 250, 0), 0);
-                }
-                else if (this._color == 'blue') {
-                    stroke(0, 0, map(v, 0, this._levels, 250, 0));
-                }
-                else if (this._color == 'greyscale') {
-                    stroke(map(v, 0, this._levels, 250, 0))
-
-                }
+                stroke(this._color, map(v, 0, this._levels, 100, 50), map(v, 0, this._levels, 100, 0));
                 line(this.points[v][c].l.x, this.points[v][c].l.y, this.points[v][c].c.x, this.points[v][c].c.y);
-                }
             }
         }
-
-    
+    }
 
 
 }
@@ -136,20 +127,20 @@ function addTrees() {
     let variedHeight = document.getElementById("variedHeight").checked;
     x = 0;
     num_trees = document.getElementById("numTrees").value;
-    c_num = document.getElementById("color").value - 1;
+    c_num = document.getElementById("color").value;
     bLength = Math.floor(Math.random() * 6) + 4;
     let spacing;
     while (x < num_trees) {
-        if(variedHeight) {
+        if (variedHeight) {
             bLength = Math.floor(Math.random() * 6) + 4;
         }
         if (randomSpacing) {
-             spacing = width * Math.random();
+            spacing = width * Math.random();
         }
-        else{
-           spacing = ((w * 8 / (num_trees - 1)) * x + w);
+        else {
+            spacing = ((w * 8 / (num_trees - 1)) * x + w);
         }
-        trees.push(new Tree(12, 60, color[c_num], spacing, bLength));
+        trees.push(new Tree(12, 60, c_num, spacing, bLength));
         x++;
     }
     console.log('added')
@@ -162,19 +153,19 @@ function setup() {
     canvas.parent('sketch-holder');
     canvas.background("#00bfff");
     w = width * 0.1;
-    colorMode(RGB,255)
+    colorMode(HSB, 100)
 }
 
 function draw() {
-        if (trees != null) {
-            for (let i = 0; i < trees.length; i++) {
-                trees[i].draw();
-            }
+    if (trees != null) {
+        for (let i = 0; i < trees.length; i++) {
+            trees[i].draw();
         }
-        else {
-            console.log("No trees")
-        }
-    
+    }
+    else {
+        console.log("No trees")
+    }
+
 }
 
 
