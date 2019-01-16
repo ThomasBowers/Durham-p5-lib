@@ -148,9 +148,9 @@ class Tree {
             // go through the array and draw level
             for (let v = this._levels; v > 0; v--) {
                 for (let c = 0; c < this.points[v].length; c++) {
-                    g.colorMode(HSB, 100);
-                    g.strokeWeight(v);
-                    g.stroke(this._color, map(v, 0, this._levels, 100, 50), map(v, 0, this._levels, 100, 0));
+                    colorMode(HSB, 100);
+                    strokeWeight(v);
+                    stroke(this._color, map(v, 0, this._levels, 100, 50), map(v, 0, this._levels, 100, 0));
                     g.line(this.points[v][c].l.x, this.points[v][c].l.y, this.points[v][c].c.x, this.points[v][c].c.y);
                 }
             }

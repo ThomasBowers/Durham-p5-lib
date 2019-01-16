@@ -78,7 +78,7 @@ function draw() {
                 for (let i = 0; i < trees.length; i++) {
                     //checks if coordinates need updating before redraw
                     trees[i].updateCoords();
-                    trees[i].draw();
+                    trees[i].draw(canvas);
                 }
                 needs_draw = false;
                 resized = 0;
@@ -87,7 +87,7 @@ function draw() {
                 canvas.background("#00bfff");
                 for (let i = 0; i < trees.length; i++) {
                     //checks if coordinates need updating before redraw
-                    trees[i].draw();
+                    trees[i].draw(canvas);
                 }
                 needs_draw = false;
             }
