@@ -5,10 +5,10 @@ class Tree {
     //constructor
     /**
      * @constructor
-     * @param {Int} levels - depth of tree
-     * @param {Int} color - Hue value of tree
-     * @param {Int} position - x-coordinate of tree base
-     * @param {Int} bLength - length of tree branch
+     * @param {number} levels - depth of tree
+     * @param {number} color - Hue value of tree
+     * @param {number} position - x-coordinate of tree base
+     * @param {number} bLength - length of tree branch
      */
     constructor(levels, color, position, bLength) {
         this.points = [];
@@ -42,17 +42,17 @@ class Tree {
 
     /**
      * Sets tree base x - coordinate
-     * @param value {int} x-coordinate of tree base
-     * need to run updateCoords() after to update
+     * need to run updateCoords() after to update points array
+     * @param value {number} x-coordinate of tree base
      */
     set position(value) {
         if (Number.isInteger(value)) {
-            this._position = value
+            this._position = value;
         }
     }
 
     /**
-     * @returns {int} Current length of all tree branches
+     * @returns {number} Current length of all tree branches
      */
     get bLength() {
         return this._bLength;
@@ -60,20 +60,19 @@ class Tree {
 
     /**
      * Sets the branch length needs to be between 1 and 16
-     * need to run updateCoords() to update object
-     * @param value {int} tree branch length
-     * need to run updateCoords() after to update
+     * need to run updateCoords() after to update points array
+     * @param value {number} tree branch length
      */
     set bLength(value) {
         if (Number.isInteger(value)) {
             if (value > 0 && value <= 16) {
-                this._bLength = value
+                this._bLength = value;
             }
         }
     }
 
     /**
-     * @returns {int} Depth of the tree
+     * @returns {number} Depth of the tree
      */
     get levels() {
         return this._levels;
@@ -81,20 +80,19 @@ class Tree {
 
     /**
      * Sets the value of the tree depth between 1 and 16
-     * need to run updateCoords() to update object
-     * @param value {int} - tree depth
-     * need to run updateCoords() after to update
+     * need to run updateCoords() after to update points array
+     * @param value {number} - tree depth
      */
     set levels(value) {
         if (Number.isInteger(value)) {
             if (value > 0 && value <= 16) {
-                this._levels = value
+                this._levels = value;
             }
         }
     }
 
     /**
-     * @returns {int} Hue value of the tree
+     * @returns {number} Hue value of the tree
      */
     get color() {
         return this._color;
@@ -102,11 +100,12 @@ class Tree {
 
     /**
      * Sets the hue value of the tree scaled between 0 - 100
-     * @param value {int} - Hue Value
+     * need to run updateCoords() after to update points array
+     * @param value {number} - Hue Value
      */
     set color(value) {
         if (Number.isInteger(value)) {
-            this._color = value % 100
+            this._color = value % 100;
         }
     }
 
@@ -141,16 +140,29 @@ class Tree {
     }
 
     /**
-     * Draws tree on canvas with current coordinates set
+     * Draws tree on canvas
+     * @param g {canvas} - Pass in custom canvas to draw to
      */
-    draw() {
-        // go through the array and draw level
-        for (let v = this._levels; v > 0; v--) {
-            for (let c = 0; c < this.points[v].length; c++) {
-                colorMode(HSB, 100);
-                strokeWeight(v);
-                stroke(this._color, map(v, 0, this._levels, 100, 50), map(v, 0, this._levels, 100, 0));
-                line(this.points[v][c].l.x, this.points[v][c].l.y, this.points[v][c].c.x, this.points[v][c].c.y);
+    draw(g) {
+        if (g) {
+            // go through the array and draw level
+            for (let v = this._levels; v > 0; v--) {
+                for (let c = 0; c < this.points[v].length; c++) {
+                    g.colorMode(HSB, 100);
+                    g.strokeWeight(v);
+                    g.stroke(this._color, map(v, 0, this._levels, 100, 50), map(v, 0, this._levels, 100, 0));
+                    g.line(this.points[v][c].l.x, this.points[v][c].l.y, this.points[v][c].c.x, this.points[v][c].c.y);
+                }
+            }
+        }
+        else {
+            for (let v = this._levels; v > 0; v--) {
+                for (let c = 0; c < this.points[v].length; c++) {
+                    colorMode(HSB, 100);
+                    strokeWeight(v);
+                    stroke(this._color, map(v, 0, this._levels, 100, 50), map(v, 0, this._levels, 100, 0));
+                    line(this.points[v][c].l.x, this.points[v][c].l.y, this.points[v][c].c.x, this.points[v][c].c.y);
+                }
             }
         }
     }

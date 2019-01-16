@@ -2,7 +2,7 @@ let trees = [];
 let x;
 let w;
 let needs_draw, resized = 0;
-let canvas
+let canvas;
 //methods to remove trees from the array
 function removeAll() {
     trees = [];
@@ -80,8 +80,8 @@ function draw() {
                     trees[i].updateCoords();
                     trees[i].draw();
                 }
-                needs_draw = false
-                resized = 0
+                needs_draw = false;
+                resized = 0;
             }
             else{
                 canvas.background("#00bfff");
@@ -89,7 +89,7 @@ function draw() {
                     //checks if coordinates need updating before redraw
                     trees[i].draw();
                 }
-                needs_draw = false
+                needs_draw = false;
             }
         }
     }
@@ -99,11 +99,14 @@ function draw() {
 function windowResized() {
     resizeCanvas(windowWidth * 0.8, windowHeight * 0.8);
     w = width * 0.1;
-    needs_draw = 1
-    resized = 1
+    needs_draw = 1;
 }
 
 function updateSlider(value, id) {
     document.getElementById(id).innerHTML=value;
 
+}
+function recalc() {
+    needs_draw = 1;
+    resized = 1;
 }
