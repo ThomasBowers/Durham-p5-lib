@@ -41,15 +41,26 @@
                 <span id="slider_value_num_trees" style="color:hsl(50, 100%, 0%);">5</span>
 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
+                <label for="branch_length">Branch Length (2-10):</label>
+                <input type="range" min="2" max="10" class="form-control-range" value="6" id="branch_length"
+                       onchange="updateSlider(this.value, 'slider_value_branch_length');">
+                <span id="slider_value_branch_length" style="color:hsl(50, 100%, 0%);">6</span>
+
+            </div>
+            <div class="col-md-3">
+                <label for="tree_depth">Tree Depth (1-16):</label>
+                <input type="range" min="1" max="16" class="form-control-range" value="10" id="tree_depth"
+                       onchange="updateSlider(this.value, 'slider_value_tree_depth');">
+                <span id="slider_value_tree_depth" style="color:hsl(50, 100%, 0%);">6</span>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <label class="btn btn-primary">
                     Random Spacing
                     <input type="checkbox" class="form-check-input" id="randomSpacing">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="btn btn-primary">
-                    Varied Height
-                    <input type="checkbox" class="form-check-input" id="variedHeight">
                     <span class="checkmark"></span>
                 </label>
                 <button type="submit" class="btn btn-primary" onclick="addTrees();">Draw!</button>

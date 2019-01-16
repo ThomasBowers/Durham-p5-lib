@@ -2,83 +2,57 @@
  * @class
  */
 class Tree {
-
     //constructor
     /**
      * @constructor
-     * @param {number} levels - depth of tree
-     * @param {number} color - Hue value of tree
-     * @param {number} position - x-coordinate of tree base
-     * @param {number} bLength - length of tree branch
+     * @param {Int} levels - depth of tree
+     * @param {Int} color - Hue value of tree
+     * @param {Int} position - x-coordinate of tree base
+     * @param {Int} bLength - length of tree branch
      */
-    constructor(levels, color, position, bLength = 7, height) {
-        this._points = [];
+    constructor(levels, color, position, bLength) {
+        this.points = [];
         this._color = color;
         this._levels = levels;
         this._bLength = bLength;
         this._position = position;
-        this._height = height;
-        this._initialPos = createVector(this._position, this._height);
-        for (let i = 0; i <= this._levels; i++) {
-            this._points.push([]);
-        }
-        this.drawY(this._levels, 0, this._initialPos);
+        this.updateCoords();
     }
 
     /**
-     * Re calculates the coordinates of a tree needed when position or height is changed
+     *Re calculates the coordinates of a tree needed when position,
+     levels or blength is changed
      */
     updateCoords() {
-        this._initialPos = createVector(this._position,this._height);
-        this._points = [];
+        this._initialPos = createVector(this._position, height);
+        this.points = [];
         for (let i = 0; i <= this._levels; i++) {
-            this._points.push([]);
+            this.points.push([]);
         }
         this.drawY(this._levels, 0, this._initialPos);
     }
 
     //getters and setters
     /**
-     *
-     * @returns {number} y-coordinate of Tree base
+     * @returns {int} X-coordinate of tree base
      */
-    get height() {
-        return this._height;
-    }
-
-    /**
-     * Sets tree base y - coordinate
-     * @param value {number} y-coordinate of tree base
-     */
-    set height(value) {
-        if (Number.isInteger(value)) {
-            this._height = value;
-            this.updateCoords();
-        }
-    }
-
-    /**
-     * @returns {number} X-coordinate of tree base
-     */
-
     get position() {
         return this._position;
     }
 
     /**
      * Sets tree base x - coordinate
-     * @param value {number} x-coordinate of tree base
+     * @param value {int} x-coordinate of tree base
+     * need to run updateCoords() after to update
      */
     set position(value) {
         if (Number.isInteger(value)) {
             this._position = value
-            this.updateCoords()
-
         }
     }
 
     /**
-     * @returns {number} Current length of all tree branches
+     * @returns {int} Current length of all tree branches
      */
     get bLength() {
         return this._bLength;
@@ -87,20 +61,19 @@ class Tree {
     /**
      * Sets the branch length needs to be between 1 and 16
      * need to run updateCoords() to update object
-     * @param value {number} tree branch length
+     * @param value {int} tree branch length
      * need to run updateCoords() after to update
      */
     set bLength(value) {
         if (Number.isInteger(value)) {
             if (value > 0 && value <= 16) {
                 this._bLength = value
-                this.updateCoords()
             }
         }
     }
 
     /**
-     * @returns {number} Depth of the tree
+     * @returns {int} Depth of the tree
      */
     get levels() {
         return this._levels;
@@ -109,20 +82,19 @@ class Tree {
     /**
      * Sets the value of the tree depth between 1 and 16
      * need to run updateCoords() to update object
-     * @param value {number} - tree depth
+     * @param value {int} - tree depth
      * need to run updateCoords() after to update
      */
     set levels(value) {
         if (Number.isInteger(value)) {
             if (value > 0 && value <= 16) {
                 this._levels = value
-                this.updateCoords()
             }
         }
     }
 
     /**
-     * @returns {number} Hue value of the tree
+     * @returns {int} Hue value of the tree
      */
     get color() {
         return this._color;
@@ -130,7 +102,7 @@ class Tree {
 
     /**
      * Sets the hue value of the tree scaled between 0 - 100
-     * @param value {number} - Hue Value
+     * @param value {int} - Hue Value
      */
     set color(value) {
         if (Number.isInteger(value)) {
@@ -151,10 +123,10 @@ class Tree {
         let currentPos = createVector(0, -level * this._bLength).rotate(angle).add(lastPos);
 
         // other base case, if branch is under ground
-        if (currentPos.y > this._height) return;
+        if (currentPos.y > height) return;
 
         // add the line start end location into the level's array
-        this._points[level].push({
+        this.points[level].push({
             'l': lastPos,
             'c': currentPos
         });
@@ -174,11 +146,11 @@ class Tree {
     draw() {
         // go through the array and draw level
         for (let v = this._levels; v > 0; v--) {
-            for (let c = 0; c < this._points[v].length; c++) {
-                colorMode(HSL, 100);
+            for (let c = 0; c < this.points[v].length; c++) {
+                colorMode(HSB, 100);
                 strokeWeight(v);
-                stroke(this._color, 100, map(v, 0, this._levels, 50, 10));
-                line(this._points[v][c].l.x, this._points[v][c].l.y, this._points[v][c].c.x, this._points[v][c].c.y);
+                stroke(this._color, map(v, 0, this._levels, 100, 50), map(v, 0, this._levels, 100, 0));
+                line(this.points[v][c].l.x, this.points[v][c].l.y, this.points[v][c].c.x, this.points[v][c].c.y);
             }
         }
     }
