@@ -1,6 +1,5 @@
 <html>
 <head>
-
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -12,45 +11,46 @@
 </head>
 <body>
 <div style="text-align: center">
-    <div class="row">
-        <h1>Draw A Forest</h1>
-    </div>
-    <div class="row">
-        <div id="sketch-holder">
-            <!-- My sketch will go here! -->
+    <div class="container">
+        <div class="row">
+            <h1>Draw A Forest</h1>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
+        <div class="row">
+            <div id="sketch-holder">
+                <!-- My sketch will go here! -->
+            </div>
+        </div>
+        <div class="row">
             <h3>Add</h3>
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label for="color">Hue value (0-100):</label>
-                        <input type="range" min="0" max="100" class="form-control-range" value="50" id="color">
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="color">Hue value (0-100):</label>
+                    <input type="range" min="0" max="100" class="form-control-range" value="50" id="color"
+                           onchange="updateSlider(this.value, 'slider_value_color');">
+                    <span id="slider_value_color" style="color:black;">50</span>
                 </div>
-                <div class="col-md-2">
-                    <label class="btn btn-primary">
-                        Random Spacing
-                        <input type="checkbox" class="form-check-input" id="randomSpacing">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="col-md-2">
-                    <label class="btn btn-primary">
-                        Varied Height
-                        <input type="checkbox" class="form-check-input" id="variedHeight">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="col-md-2">
-                    <label for="numTrees">Number of Trees (0-20):</label>
-                    <input type="range" min="0" max="20" class="form-control-range" value="5" id="numTrees">
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary" onclick="addTrees();">Draw!</button>
-                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="numTrees">Number of Trees (0-20):</label>
+                <input type="range" min="0" max="20" class="form-control-range" value="5" id="numTrees"
+                       onchange="updateSlider(this.value, 'slider_value_num_trees');">
+                <span id="slider_value_num_trees" style="color:black;">5</span>
+
+            </div>
+            <div class="col-md-6">
+                <label class="btn btn-primary">
+                    Random Spacing
+                    <input type="checkbox" class="form-check-input" id="randomSpacing">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="btn btn-primary">
+                    Varied Height
+                    <input type="checkbox" class="form-check-input" id="variedHeight">
+                    <span class="checkmark"></span>
+                </label>
+                <button type="submit" class="btn btn-primary" onclick="addTrees();">Draw!</button>
             </div>
         </div>
     </div>

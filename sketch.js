@@ -76,6 +76,7 @@ function draw() {
     if (trees != null) {
         //needed to prevent constantly redrawing trees
         if (needs_draw) {
+            setup();
             for (let i = 0; i < trees.length; i++) {
                 //checks if coordinates need updating before redraw
                 trees[i].updateCoords();
@@ -95,5 +96,9 @@ function windowResized() {
     setup();
 }
 
+function updateSlider(value, id) {
+    document.getElementById(id).innerHTML=value;
+
+}
 
 
