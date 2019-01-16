@@ -10,19 +10,115 @@ A library of reusable components for [p5js](https://p5js.org/). These are develo
    - A `.html` file which uses the .js file and demonstrates its use
 - Once everything is complete (including peer review) make a pull request from your forked repository to <https://github.com/stevenaeola/Durham-p5-lib>
 
+<a name="Tree"></a>
 
-## The Tree Class
+## Tree
+**Kind**: global class  
 
-###Methods
+* [Tree](#Tree)
+    * [new Tree(levels, color, position, bLength)](#new_Tree_new)
+    * [.position](#Tree+position) ⇒ <code>position</code>
+    * [.position](#Tree+position)
+    * [.bLength](#Tree+bLength) ⇒ <code>bLength</code>
+    * [.bLength](#Tree+bLength)
+    * [.levels](#Tree+levels) ⇒ <code>levels</code>
+    * [.levels](#Tree+levels)
+    * [.color](#Tree+color) ⇒ <code>color</code>
+    * [.color](#Tree+color)
+    * [.updateCoords()](#Tree+updateCoords)
+    * [.draw()](#Tree+draw)
 
-- constructor
-    - Parametrs(levels (Depth of tree being drawn between 1 - 16), 
-    color (hue value of tree), position (x coordinate of the tree's base), 
-    blength (length of each branch of the tree between 1 - 16))
-    - Use: Initialises a new tree object with the provided parameters
-- draw()
-    - Parameters (none)
-- updateCoords()
-    - Parameters (none)
-    - Use: Re calculates the coordinates of a tree needed when position,
-    levels or blength is changed
+<a name="new_Tree_new"></a>
+
+### new Tree(levels, color, position, bLength)
+
+| Param | Type | Description |
+| --- | --- | --- |
+| levels | <code>Int</code> | depth of tree |
+| color | <code>Int</code> | Hue value of tree |
+| position | <code>Int</code> | x-coordinate of tree base |
+| bLength | <code>Int</code> | length of tree branch |
+
+<a name="Tree+position"></a>
+
+### tree.position ⇒ <code>position</code>
+Gets tree base x - coordinate
+
+**Kind**: instance property of [<code>Tree</code>](#Tree)  
+<a name="Tree+position"></a>
+
+### tree.position
+Sets tree base x - coordinate
+
+**Kind**: instance property of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>int</code> | x-coordinate of tree base need to run updateCoords() after to update |
+
+<a name="Tree+bLength"></a>
+
+### tree.bLength ⇒ <code>bLength</code>
+Gets current length of tree branch
+
+**Kind**: instance property of [<code>Tree</code>](#Tree)  
+<a name="Tree+bLength"></a>
+
+### tree.bLength
+Sets the branch length needs to be between 1 and 16
+need to run updateCoords() to update object
+
+**Kind**: instance property of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>int</code> | tree branch length need to run updateCoords() after to update |
+
+<a name="Tree+levels"></a>
+
+### tree.levels ⇒ <code>levels</code>
+Gets the depth of the tree
+
+**Kind**: instance property of [<code>Tree</code>](#Tree)  
+<a name="Tree+levels"></a>
+
+### tree.levels
+Sets the value of the tree depth between 1 and 16
+need to run updateCoords() to update object
+
+**Kind**: instance property of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>int</code> | tree depth need to run updateCoords() after to update |
+
+<a name="Tree+color"></a>
+
+### tree.color ⇒ <code>color</code>
+Gets the current hue value of the tree
+
+**Kind**: instance property of [<code>Tree</code>](#Tree)  
+<a name="Tree+color"></a>
+
+### tree.color
+Sets the hue value of the tree scaled between 0 - 100
+
+**Kind**: instance property of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>int</code> | Hue Value |
+
+<a name="Tree+updateCoords"></a>
+
+### tree.updateCoords()
+Re calculates the coordinates of a tree needed when position,
+     levels or blength is changed
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+<a name="Tree+draw"></a>
+
+### tree.draw()
+Draws tree on canvas with current coordinates set
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  

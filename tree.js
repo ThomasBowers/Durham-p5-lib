@@ -1,11 +1,14 @@
+/**
+ * @class
+ */
 class Tree {
     //constructor
     /**
      * @constructor
-     * @param levels
-     * @param color
-     * @param position
-     * @param bLength
+     * @param {Int} levels - depth of tree
+     * @param {Int} color - Hue value of tree
+     * @param {Int} position - x-coordinate of tree base
+     * @param {Int} bLength - length of tree branch
      */
     constructor(levels, color, position, bLength) {
         this.points = [];
@@ -40,8 +43,8 @@ class Tree {
 
     /**
      * Sets tree base x - coordinate
-     * @param value
-     * need to run updateCoords() to update object
+     * @param value {int} x-coordinate of tree base
+     * need to run updateCoords() after to update
      */
     set position(value) {
         if (Number.isInteger(value)) {
@@ -60,7 +63,8 @@ class Tree {
     /**
      * Sets the branch length needs to be between 1 and 16
      * need to run updateCoords() to update object
-     * @param value
+     * @param value {int} tree branch length
+     * need to run updateCoords() after to update
      */
     set bLength(value) {
         if (Number.isInteger(value)) {
@@ -81,7 +85,8 @@ class Tree {
     /**
      * Sets the value of the tree depth between 1 and 16
      * need to run updateCoords() to update object
-     * @param value
+     * @param value {int} - tree depth
+     * need to run updateCoords() after to update
      */
     set levels(value) {
         if (Number.isInteger(value)) {
@@ -101,7 +106,7 @@ class Tree {
 
     /**
      * Sets the hue value of the tree scaled between 0 - 100
-     * @param value
+     * @param value {int} - Hue Value
      */
     set color(value) {
         if (Number.isInteger(value)) {
@@ -109,13 +114,9 @@ class Tree {
         }
     }
 
-    //calculates points
     /**
      * @private
      * Recursively calculates coordinates for branches to be drawn between
-     * @param level
-     * @param angle
-     * @param lastPos
      */
     drawY(level, angle, lastPos) {
 
