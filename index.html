@@ -23,31 +23,31 @@
         <div class="col-md-12">
             <h3>Add</h3>
             <div class="row">
-                <div class="col-md">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="color">Hue value (0-100):</label>
-                        <input type="number" class="btn btn-primary" value="1" id="color">
+                        <input type="range" min="0" max="100" class="form-control-range" value="50" id="color">
                     </div>
                 </div>
-                <div class="col-md">
+                <div class="col-md-2">
                     <label class="btn btn-primary">
                         Random Spacing
                         <input type="checkbox" class="form-check-input" id="randomSpacing">
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <div class="col-md">
+                <div class="col-md-2">
                     <label class="btn btn-primary">
                         Varied Height
                         <input type="checkbox" class="form-check-input" id="variedHeight">
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <div class="col-md">
-                    <label for="numTrees">Number of Trees:</label>
-                    <input type="number" class="btn btn-primary" value="1" id="numTrees">
+                <div class="col-md-2">
+                    <label for="numTrees">Number of Trees (0-20):</label>
+                    <input type="range" min="0" max="20" class="form-control-range" value="5" id="numTrees">
                 </div>
-                <div class="col-md">
+                <div class="col-md-2">
                     <button type="submit" class="btn btn-primary" onclick="addTrees();">Draw!</button>
                 </div>
             </div>
@@ -60,6 +60,7 @@
                 <input type="button" class="btn btn-default" value="Last" onclick="removeLast();">
                 <input type="button" class="btn btn-default" value="Random" onclick="removeRandom();">
                 <input type="button" class="btn btn-default" value="All" onclick="removeAll();">
+                <input type="button" class="btn btn-default" value="Kill" onclick="modify();">
 
             </div>
         </div>

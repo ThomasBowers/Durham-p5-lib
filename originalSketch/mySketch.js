@@ -1,6 +1,5 @@
 const levels = 18;
 let drawLevel;
-
 let points;
 
 function setup() {
