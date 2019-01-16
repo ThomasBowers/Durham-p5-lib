@@ -7,20 +7,17 @@ let needs_draw;
 function removeAll() {
     trees = [];
     //need to clear and re run setup or trees stay on canvas
-    clear();
     setup();
 }
 
 function removeLast() {
     trees.pop();
-    clear();
     setup();
 }
 
 function removeRandom() {
     let s = Math.floor(Math.random() * trees.length);
     trees.splice(s, 1);
-    clear();
     setup();
 }
 
@@ -49,8 +46,9 @@ function addTrees() {
     }
 }
 
-
+//p5.js setup method creates canvas and sets some global variables
 function setup() {
+    clear();
     let canvas = createCanvas(windowWidth * 0.8, windowHeight * 0.8);
     canvas.parent('sketch-holder');
     canvas.background("#00bfff");
@@ -58,6 +56,7 @@ function setup() {
     needs_draw = true
 }
 
+//A function to demonstrate the use of the getters and setters of my tree class
 function modify() {
     if (trees != null) {
         for (let i = 0; i < trees.length; i++) {
@@ -65,8 +64,6 @@ function modify() {
             trees[i].bLength = 10;
             trees[i].position = parseInt(w * 10 * Math.random());
             trees[i].levels = 6;
-            trees[i].updateCoords();
-            clear();
             setup();
         }
     }
@@ -74,11 +71,14 @@ function modify() {
         console.log("No trees")
     }
 }
-
+//The p5.js draw function runs automatically
 function draw() {
     if (trees != null) {
+        //needed to prevent constantly redrawing trees
         if (needs_draw) {
             for (let i = 0; i < trees.length; i++) {
+                //checks if coordinates need updating before redraw
+                trees[i].updateCoords();
                 trees[i].draw();
             }
             needs_draw = false

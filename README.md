@@ -9,7 +9,6 @@ A library of reusable components for [p5js](https://p5js.org/). These are develo
    - A `.js` file containing the relevant class definition
    - A `.html` file which uses the .js file and demonstrates its use
 - Once everything is complete (including peer review) make a pull request from your forked repository to <https://github.com/stevenaeola/Durham-p5-lib>
-
 <a name="Tree"></a>
 
 ## Tree
@@ -17,13 +16,13 @@ A library of reusable components for [p5js](https://p5js.org/). These are develo
 
 * [Tree](#Tree)
     * [new Tree(levels, color, position, bLength)](#new_Tree_new)
-    * [.position](#Tree+position) ⇒ <code>position</code>
+    * [.position](#Tree+position) ⇒ <code>int</code>
     * [.position](#Tree+position)
-    * [.bLength](#Tree+bLength) ⇒ <code>bLength</code>
+    * [.bLength](#Tree+bLength) ⇒ <code>int</code>
     * [.bLength](#Tree+bLength)
-    * [.levels](#Tree+levels) ⇒ <code>levels</code>
+    * [.levels](#Tree+levels) ⇒ <code>int</code>
     * [.levels](#Tree+levels)
-    * [.color](#Tree+color) ⇒ <code>color</code>
+    * [.color](#Tree+color) ⇒ <code>int</code>
     * [.color](#Tree+color)
     * [.updateCoords()](#Tree+updateCoords)
     * [.draw()](#Tree+draw)
@@ -41,10 +40,9 @@ A library of reusable components for [p5js](https://p5js.org/). These are develo
 
 <a name="Tree+position"></a>
 
-### tree.position ⇒ <code>position</code>
-Gets tree base x - coordinate
-
+### tree.position ⇒ <code>int</code>
 **Kind**: instance property of [<code>Tree</code>](#Tree)  
+**Returns**: <code>int</code> - X-coordinate of tree base  
 <a name="Tree+position"></a>
 
 ### tree.position
@@ -58,10 +56,9 @@ Sets tree base x - coordinate
 
 <a name="Tree+bLength"></a>
 
-### tree.bLength ⇒ <code>bLength</code>
-Gets current length of tree branch
-
+### tree.bLength ⇒ <code>int</code>
 **Kind**: instance property of [<code>Tree</code>](#Tree)  
+**Returns**: <code>int</code> - Current length of all tree branches  
 <a name="Tree+bLength"></a>
 
 ### tree.bLength
@@ -76,10 +73,9 @@ need to run updateCoords() to update object
 
 <a name="Tree+levels"></a>
 
-### tree.levels ⇒ <code>levels</code>
-Gets the depth of the tree
-
+### tree.levels ⇒ <code>int</code>
 **Kind**: instance property of [<code>Tree</code>](#Tree)  
+**Returns**: <code>int</code> - Depth of the tree  
 <a name="Tree+levels"></a>
 
 ### tree.levels
@@ -94,10 +90,9 @@ need to run updateCoords() to update object
 
 <a name="Tree+color"></a>
 
-### tree.color ⇒ <code>color</code>
-Gets the current hue value of the tree
-
+### tree.color ⇒ <code>int</code>
 **Kind**: instance property of [<code>Tree</code>](#Tree)  
+**Returns**: <code>int</code> - Hue value of the tree  
 <a name="Tree+color"></a>
 
 ### tree.color

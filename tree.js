@@ -34,8 +34,7 @@ class Tree {
 
     //getters and setters
     /**
-     * Gets tree base x - coordinate
-     * @returns {position}
+     * @returns {int} X-coordinate of tree base
      */
     get position() {
         return this._position;
@@ -53,8 +52,7 @@ class Tree {
     }
 
     /**
-     * Gets current length of tree branch
-     * @returns {bLength}
+     * @returns {int} Current length of all tree branches
      */
     get bLength() {
         return this._bLength;
@@ -75,8 +73,7 @@ class Tree {
     }
 
     /**
-     * Gets the depth of the tree
-     * @returns {levels}
+     * @returns {int} Depth of the tree
      */
     get levels() {
         return this._levels;
@@ -97,8 +94,7 @@ class Tree {
     }
 
     /**
-     * Gets the current hue value of the tree
-     * @returns {color}
+     * @returns {int} Hue value of the tree
      */
     get color() {
         return this._color;
