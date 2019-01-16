@@ -8,6 +8,7 @@
     <script src="tree.js" type="text/javascript"></script>
     <script src="sketch.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js" type="text/javascript"></script>
+
 </head>
 <body>
 <div style="text-align: center">
@@ -28,15 +29,16 @@
                 <div class="form-group">
                     <label for="color">Hue value (0-100):</label>
                     <input type="range" min="0" max="100" class="form-control-range" value="50" id="color"
-                           onchange="updateSlider(this.value, 'slider_value_color');">
-                    <span id="slider_value_color" style="color:black;">50</span>
+                           onchange="updateSlider(this.value, 'slider_value_color');
+                           document.getElementById('slider_value_color').style.color = 'hsl(' + this.value*3.6 +', 100%, 50%)';">
+                    <span id="slider_value_color" style="color:hsl(50, 100%, 50%);">50</span>
                 </div>
             </div>
             <div class="col-md-3">
                 <label for="numTrees">Number of Trees (0-20):</label>
                 <input type="range" min="0" max="20" class="form-control-range" value="5" id="numTrees"
                        onchange="updateSlider(this.value, 'slider_value_num_trees');">
-                <span id="slider_value_num_trees" style="color:black;">5</span>
+                <span id="slider_value_num_trees" style="color:hsl(50, 100%, 0%);">5</span>
 
             </div>
             <div class="col-md-6">
@@ -62,12 +64,12 @@
                 <input type="button" class="btn btn-default" value="Random" onclick="removeRandom();">
                 <input type="button" class="btn btn-default" value="All" onclick="removeAll();">
                 <input type="button" class="btn btn-default" value="Kill Trees" onclick="modify();">
-
+                <input type="button" class="btn btn-default" value="Reset" onclick="recalc();">
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md">
+        <div class="col-md-12">
             <h2>Instructions</h2>
             <p>
                 Use the sliders and checkboxes to specify how you want to draw your trees
