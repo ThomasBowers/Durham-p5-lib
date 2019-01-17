@@ -2,6 +2,7 @@
  * @class
  */
 class Tree {
+
     //constructor
     /**
      * @constructor
@@ -10,12 +11,13 @@ class Tree {
      * @param {number} position - x-coordinate of tree base
      * @param {number} bLength - length of tree branch
      */
-    constructor(levels, color, position, bLength) {
+    constructor(levels, color, position, bLength, initialHeight) {
         this.points = [];
         this._color = color;
         this._levels = levels;
         this._bLength = bLength;
         this._position = position;
+        this._height = initialHeight;
         this.updateCoords();
     }
 
@@ -24,7 +26,7 @@ class Tree {
      levels or blength is changed
      */
     updateCoords() {
-        this._initialPos = createVector(this._position, height);
+        this._initialPos = createVector(this._position, this._height);
         this.points = [];
         for (let i = 0; i <= this._levels; i++) {
             this.points.push([]);
@@ -34,10 +36,29 @@ class Tree {
 
     //getters and setters
     /**
-     * @returns {int} X-coordinate of tree base
+     * @returns {int} y-coordinate of tree base
+     */
+    get height() {
+        return this._height;
+    }
+
+    /**
+     * Sets tree base y - coordinate
+     * need to run updateCoords() after to update points array
+     * @param value {number} y-coordinate of tree base
+     */
+    set height(value) {
+        if (Number.isInteger(value)) {
+            this._height = value;
+        }
+    }
+
+    /**
+     * @returns {int} x-coordinate of tree base
      */
     get position() {
         return this._position;
+
     }
 
     /**
@@ -122,7 +143,7 @@ class Tree {
         let currentPos = createVector(0, -level * this._bLength).rotate(angle).add(lastPos);
 
         // other base case, if branch is under ground
-        if (currentPos.y > height) return;
+        if (currentPos.y > this._height) return;
 
         // add the line start end location into the level's array
         this.points[level].push({

@@ -7,29 +7,32 @@ let canvas;
 function removeAll() {
     trees = [];
     //need to clear and re run setup or trees stay on canvas
-    setup();
+    canvas.background('#00bfff');
+    needs_draw = true;
 }
 
 function removeLast() {
     trees.pop();
-    setup();
+    canvas.background('#00bfff');
+    needs_draw = true;
 }
 
 function removeRandom() {
     let s = Math.floor(Math.random() * trees.length);
     trees.splice(s, 1);
-    setup();
+    canvas.background('#00bfff');
+    needs_draw = true;
 }
 
 //interacts with the html dom to set the specifics of thee tree I want to add
 function addTrees() {
     needs_draw = true;
-    let randomSpacing = document.getElementById("randomSpacing").checked;
+    let randomSpacing = document.getElementById('randomSpacing').checked;
     x = 0;
-    let num_trees = document.getElementById("numTrees").value;
-    let c_num = document.getElementById("color").value;
-    let bLength = document.getElementById("branch_length").value;
-    let levels = document.getElementById("tree_depth").value;
+    let num_trees = document.getElementById('numTrees').value;
+    let c_num = document.getElementById('color').value;
+    let bLength = document.getElementById('branch_length').value;
+    let levels = document.getElementById('tree_depth').value;
     let spacing;
     while (x < num_trees) {
         if (randomSpacing) {
@@ -38,7 +41,7 @@ function addTrees() {
         else {
             spacing = ((w * 8 / (num_trees - 1)) * x + w);
         }
-        trees.push(new Tree(levels, c_num, spacing, bLength));
+        trees.push(new Tree(levels, c_num, spacing, bLength, canvas.height));
         x++;
     }
 }
@@ -48,9 +51,9 @@ function setup() {
     clear();
     canvas = createCanvas(windowWidth * 0.8, windowHeight * 0.8);
     canvas.parent('sketch-holder');
-    canvas.background("#00bfff");
+    canvas.background('#00bfff');
     w = width * 0.1;
-    needs_draw = true
+    needs_draw = true;
 }
 
 //A function to demonstrate the use of the getters and setters of my tree class
@@ -61,11 +64,13 @@ function modify() {
             trees[i].bLength = 10;
             trees[i].position = parseInt(w * 10 * Math.random());
             trees[i].levels = 6;
-            setup();
+            canvas.background('#00bfff');
+            resized = true;
+            needs_draw = true;
         }
     }
     else {
-        console.log("No trees")
+        console.log('No trees');
     }
 }
 //The p5.js draw function runs automatically
@@ -74,9 +79,10 @@ function draw() {
         //needed to prevent constantly redrawing trees
         if (needs_draw) {
             if(resized) {
-                canvas.background("#00bfff");
+                canvas.background('#00bfff');
                 for (let i = 0; i < trees.length; i++) {
                     //checks if coordinates need updating before redraw
+                    trees[i].height = parseInt(canvas.height);
                     trees[i].updateCoords();
                     trees[i].draw(canvas);
                 }
@@ -84,7 +90,7 @@ function draw() {
                 resized = 0;
             }
             else{
-                canvas.background("#00bfff");
+                canvas.background('#00bfff');
                 for (let i = 0; i < trees.length; i++) {
                     //checks if coordinates need updating before redraw
                     trees[i].draw(canvas);
