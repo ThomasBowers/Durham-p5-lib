@@ -16,7 +16,7 @@ class Tree {
      * @param {number} bLength - length of tree branch
      * @param {number} initialHeight - y-coordinate of the tree base
      */
-    constructor(levels, color, position, bLength, initialHeight) {
+    constructor(levels = 12, color = 50, position = 0, bLength = 6, initialHeight = 0) {
         this._points = [];
         this._color = color;
         this._levels = levels;
