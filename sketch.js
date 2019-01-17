@@ -1,6 +1,4 @@
 let trees = [];
-let x;
-let w;
 let needs_draw, resized = 0;
 let canvas;
 //methods to remove trees from the array
@@ -28,21 +26,21 @@ function removeRandom() {
 function addTrees() {
     needs_draw = true;
     let randomSpacing = document.getElementById('randomSpacing').checked;
-    x = 0;
     let num_trees = document.getElementById('numTrees').value;
     let c_num = document.getElementById('color').value;
     let bLength = document.getElementById('branch_length').value;
     let levels = document.getElementById('tree_depth').value;
     let spacing;
+    let x = 0;
     while (x < num_trees) {
+        x++;
         if (randomSpacing) {
-            spacing = width * Math.random();
+            spacing = canvas.width * Math.random();
         }
         else {
-            spacing = ((w * 8 / (num_trees - 1)) * x + w);
+            spacing = x*(parseInt(canvas.width)/(parseInt(num_trees)+1));
         }
         trees.push(new Tree(levels, c_num, spacing, bLength, canvas.height));
-        x++;
     }
 }
 
@@ -52,7 +50,7 @@ function setup() {
     canvas = createCanvas(windowWidth * 0.8, windowHeight * 0.8);
     canvas.parent('sketch-holder');
     canvas.background('#00bfff');
-    w = width * 0.1;
+    w = canvas.width * 0.1;
     needs_draw = true;
 }
 
@@ -62,7 +60,7 @@ function modify() {
         for (let i = 0; i < trees.length; i++) {
             trees[i].color = 67;
             trees[i].bLength = 10;
-            trees[i].position = parseInt(w * 10 * Math.random());
+    //s        trees[i].position = parseInt(w * 10 * Math.random());
             trees[i].levels = 6;
             canvas.background('#00bfff');
             resized = true;
@@ -104,7 +102,6 @@ function draw() {
 
 function windowResized() {
     resizeCanvas(windowWidth * 0.8, windowHeight * 0.8);
-    w = width * 0.1;
     needs_draw = 1;
 }
 
