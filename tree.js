@@ -3,7 +3,7 @@
  * A class to describe a 2- Dimensional tree graphic where the branches are randomly
  * generated through a recursive algorithm. A tree object holds an array of points
  * describing the start and end point of each of the branches and a draw method that
- * draws lines between these points to create the tree object
+ * draws lines between these points to create the tree object.
  */
 class Tree {
 

@@ -1,12 +1,12 @@
 Based on the sketch found at https://www.openprocessing.org/sketch/504377
 ## My example Implementation
-Ive implemented my tree class so that it pushes multiple of them to one canvas 
-appearing like a forest. I've added html form controls to demonstrate initialising
-tree objects with different parameters. Te kill trees button shows is there to show 
-how through getters and setters I can manipulate objects after creations. There are also
+I've implemented my tree class so that it pushes multiple tree objects into an array and
+ draws them on to a canvas appearing like a forest. I've added html form controls to demonstrate 
+ initialising tree objects with different parameters. The kill trees button shows is there to show 
+how through getters and setters I can manipulate tree objects after creation. There are also
 options to remove trees adding to the user experience. Ive also added a reset button that
 moves the trees to the bottom of the window if the window is re-sized as p5 coordinates
-start from the top and extend downwards
+start from the top and extend downwards.
 <a name="Tree"></a>
 
 ## Tree
