@@ -1,5 +1,9 @@
 /**
  * @class
+ * A class to describe a 2- Dimensional tree graphic where the branches are randomly
+ * generated through a recursive algorithm. A tree object holds an array of points
+ * describing the start and end point of each of the branches and a draw method that
+ * draws lines between these points to create the tree object
  */
 class Tree {
 
@@ -10,6 +14,7 @@ class Tree {
      * @param {number} color - Hue value of tree
      * @param {number} position - x-coordinate of tree base
      * @param {number} bLength - length of tree branch
+     * @param {number} initialHeight - y-coordinate of the tree base
      */
     constructor(levels, color, position, bLength, initialHeight) {
         this.points = [];
@@ -23,7 +28,7 @@ class Tree {
 
     /**
      *Re calculates the coordinates of a tree needed when position,
-     levels or blength is changed
+     levels blength or height is changed or the tree won't be changed
      */
     updateCoords() {
         this._initialPos = createVector(this._position, this._height);
@@ -36,7 +41,7 @@ class Tree {
 
     //getters and setters
     /**
-     * @returns {int} y-coordinate of tree base
+     * @returns {number} y-coordinate of tree base
      */
     get height() {
         return this._height;
@@ -54,7 +59,7 @@ class Tree {
     }
 
     /**
-     * @returns {int} x-coordinate of tree base
+     * @returns {number} x-coordinate of tree base
      */
     get position() {
         return this._position;

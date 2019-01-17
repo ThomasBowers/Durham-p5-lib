@@ -1,6 +1,7 @@
 let trees = [];
 let needs_draw, resized = 0;
 let canvas;
+
 //methods to remove trees from the array
 function removeAll() {
     trees = [];
@@ -38,7 +39,7 @@ function addTrees() {
             spacing = canvas.width * Math.random();
         }
         else {
-            spacing = x*(parseInt(canvas.width)/(parseInt(num_trees)+1));
+            spacing = x * (parseInt(canvas.width) / (parseInt(num_trees) + 1));
         }
         trees.push(new Tree(levels, c_num, spacing, bLength, canvas.height));
     }
@@ -60,23 +61,20 @@ function modify() {
         for (let i = 0; i < trees.length; i++) {
             trees[i].color = 67;
             trees[i].bLength = 10;
-    //s        trees[i].position = parseInt(w * 10 * Math.random());
             trees[i].levels = 6;
             canvas.background('#00bfff');
             resized = true;
             needs_draw = true;
         }
     }
-    else {
-        console.log('No trees');
-    }
 }
+
 //The p5.js draw function runs automatically
 function draw() {
     if (trees != null) {
         //needed to prevent constantly redrawing trees
         if (needs_draw) {
-            if(resized) {
+            if (resized) {
                 canvas.background('#00bfff');
                 for (let i = 0; i < trees.length; i++) {
                     //checks if coordinates need updating before redraw
@@ -87,7 +85,7 @@ function draw() {
                 needs_draw = false;
                 resized = 0;
             }
-            else{
+            else {
                 canvas.background('#00bfff');
                 for (let i = 0; i < trees.length; i++) {
                     //checks if coordinates need updating before redraw
@@ -106,9 +104,10 @@ function windowResized() {
 }
 
 function updateSlider(value, id) {
-    document.getElementById(id).innerHTML=value;
+    document.getElementById(id).innerHTML = value;
 
 }
+
 function recalc() {
     needs_draw = 1;
     resized = 1;
