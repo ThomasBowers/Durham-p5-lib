@@ -157,11 +157,11 @@ class Tree {
         });
 
         // do branch if random lets it
-        if (parseInt(random(1 + level * level / 10)) != 0)
+        if (parseInt(random(1 + level * level / 10)) !== 0)
             this.drawY(level - 1, angle - PI / random(4, 8), currentPos);
 
         // do branch if random lets it
-        if (parseInt(random(1 + level * level / 10)) != 0)
+        if (parseInt(random(1 + level * level / 10)) !== 0)
             this.drawY(level - 1, angle + PI / random(4, 8), currentPos);
     }
 
