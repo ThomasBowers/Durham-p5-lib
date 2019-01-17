@@ -111,7 +111,7 @@ class Tree {
      */
     set levels(value) {
         if (Number.isInteger(value)) {
-            if (value > 0 && value <= 16) {
+            if (value > 1 && value <= 16) {
                 this._levels = value;
             }
         }

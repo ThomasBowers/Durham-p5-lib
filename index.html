@@ -31,7 +31,7 @@
                     <input type="range" min="0" max="100" class="form-control-range" value="50" id="color"
                            onchange="updateSlider(this.value, 'slider_value_color');
                            document.getElementById('slider_value_color').style.color = 'hsl(' + this.value*3.6 +', 100%, 50%)';">
-                    <span id="slider_value_color" style="color:hsl(50, 100%, 50%);">50</span>
+                    <span id="slider_value_color" style="color:hsl(180, 100%, 50%);">50</span>
                 </div>
             </div>
             <div class="col-md-3">
@@ -49,10 +49,10 @@
 
             </div>
             <div class="col-md-3">
-                <label for="tree_depth">Tree Depth (1-16):</label>
-                <input type="range" min="1" max="16" class="form-control-range" value="10" id="tree_depth"
+                <label for="tree_depth">Tree Depth (2-16):</label>
+                <input type="range" min="2" max="16" class="form-control-range" value="9" id="tree_depth"
                        onchange="updateSlider(this.value, 'slider_value_tree_depth');">
-                <span id="slider_value_tree_depth" style="color:hsl(50, 100%, 0%);">6</span>
+                <span id="slider_value_tree_depth" style="color:hsl(50, 100%, 0%);">9</span>
 
             </div>
         </div>
@@ -69,13 +69,13 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h3>Remove</h3>
+            <h3>Modify</h3>
             <div class="btn-group">
-                <input type="button" class="btn btn-default" value="Last" onclick="removeLast();">
-                <input type="button" class="btn btn-default" value="Random" onclick="removeRandom();">
-                <input type="button" class="btn btn-default" value="All" onclick="removeAll();">
-                <input type="button" class="btn btn-default" value="Kill Trees" onclick="modify();">
-                <input type="button" class="btn btn-default" value="Reset" onclick="recalc();">
+                <input type="button" class="btn btn-default" value="Remove Last" onclick="removeLast();">
+                <input type="button" class="btn btn-default" value="Remove Random" onclick="removeRandom();">
+                <input type="button" class="btn btn-default" value="Remove All" onclick="removeAll();">
+                <input type="button" class="btn btn-default" value="Kill Trees" onclick="kill();">
+                <input type="button" class="btn btn-default" value="Reset Coordinates" onclick="recalculate();">
             </div>
         </div>
     </div>
@@ -89,7 +89,8 @@
                 The reset button re-generates trees, useful after resizing window to align to the base of the window
             </p>
             <p>
-                The remove bar lets you delete specified numbers of trees or kill all the trees (demonstration of modifying objects through getters and setters)
+                The modify bar lets you delete specified numbers of trees or kill all the trees (demonstration of
+                modifying objects through getters and setters)
             </p>
         </div>
     </div>
