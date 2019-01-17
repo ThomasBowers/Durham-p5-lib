@@ -13,7 +13,7 @@ start from the top and extend downwards.
 A class to describe a 2- Dimensional tree graphic where the branches are randomly
 generated through a recursive algorithm. A tree object holds an array of points
 describing the start and end point of each of the branches and a draw method that
-draws lines between these points to create the tree object
+draws lines between these points to create the tree object.
 
 **Kind**: global class  
 
@@ -104,7 +104,7 @@ need to run updateCoords() after to update points array
 
 ### tree.levels
 Sets the value of the tree depth between 1 and 16
-need to run updateCoords() after to update points array
+You need to run updateCoords() after to update points array
 
 **Kind**: instance property of [<code>Tree</code>](#Tree)  
 
@@ -121,7 +121,7 @@ need to run updateCoords() after to update points array
 
 ### tree.color
 Sets the hue value of the tree scaled between 0 - 100
-need to run updateCoords() after to update points array
+You need to run updateCoords() after to update points array
 
 **Kind**: instance property of [<code>Tree</code>](#Tree)  
 
@@ -132,17 +132,18 @@ need to run updateCoords() after to update points array
 <a name="Tree+updateCoords"></a>
 
 ### tree.updateCoords()
-Re calculates the coordinates of a tree needed when position,
-     levels blength or height is changed or the tree won't be changed
+Re-calculates the coordinates of a tree and pushes them into the points array.
+Needs to be called after position, levels, bLength or height is changed or the tree won't be changed.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 <a name="Tree+draw"></a>
 
 ### tree.draw(g)
-Draws tree on canvas
+Draws tree on canvas with coordinates in the array of points
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | g | <code>canvas</code> | Pass in custom canvas to draw to |
+

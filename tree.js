@@ -17,7 +17,7 @@ class Tree {
      * @param {number} initialHeight - y-coordinate of the tree base
      */
     constructor(levels, color, position, bLength, initialHeight) {
-        this.points = [];
+        this._points = [];
         this._color = color;
         this._levels = levels;
         this._bLength = bLength;
@@ -27,14 +27,14 @@ class Tree {
     }
 
     /**
-     *Re calculates the coordinates of a tree needed when position,
-     levels blength or height is changed or the tree won't be changed
+     *Re-calculates the coordinates of a tree and pushes them into the points array.
+     * Needs to be called after position, levels, bLength or height is changed or the tree won't be changed.
      */
     updateCoords() {
         this._initialPos = createVector(this._position, this._height);
-        this.points = [];
+        this._points = [];
         for (let i = 0; i <= this._levels; i++) {
-            this.points.push([]);
+            this._points.push([]);
         }
         this.drawY(this._levels, 0, this._initialPos);
     }
@@ -106,7 +106,7 @@ class Tree {
 
     /**
      * Sets the value of the tree depth between 1 and 16
-     * need to run updateCoords() after to update points array
+     * You need to run updateCoords() after to update points array
      * @param value {number} - tree depth
      */
     set levels(value) {
@@ -126,7 +126,7 @@ class Tree {
 
     /**
      * Sets the hue value of the tree scaled between 0 - 100
-     * need to run updateCoords() after to update points array
+     * You need to run updateCoords() after to update points array
      * @param value {number} - Hue Value
      */
     set color(value) {
@@ -137,7 +137,8 @@ class Tree {
 
     /**
      * @private
-     * Recursively calculates coordinates for branches to be drawn between
+     * Recursively calculates coordinates for branches to be drawn between and pushes them to the array
+     * of points.
      */
     drawY(level, angle, lastPos) {
 
@@ -151,7 +152,7 @@ class Tree {
         if (currentPos.y > this._height) return;
 
         // add the line start end location into the level's array
-        this.points[level].push({
+        this._points[level].push({
             'l': lastPos,
             'c': currentPos
         });
@@ -166,28 +167,28 @@ class Tree {
     }
 
     /**
-     * Draws tree on canvas
+     * Draws tree on canvas with coordinates in the array of points
      * @param g {canvas} - Pass in custom canvas to draw to
      */
     draw(g) {
         if (g) {
             // go through the array and draw level
             for (let v = this._levels; v > 0; v--) {
-                for (let c = 0; c < this.points[v].length; c++) {
+                for (let c = 0; c < this._points[v].length; c++) {
                     colorMode(HSB, 100);
                     strokeWeight(v);
                     stroke(this._color, map(v, 0, this._levels, 100, 50), map(v, 0, this._levels, 100, 0));
-                    g.line(this.points[v][c].l.x, this.points[v][c].l.y, this.points[v][c].c.x, this.points[v][c].c.y);
+                    g.line(this._points[v][c].l.x, this._points[v][c].l.y, this._points[v][c].c.x, this._points[v][c].c.y);
                 }
             }
         }
         else {
             for (let v = this._levels; v > 0; v--) {
-                for (let c = 0; c < this.points[v].length; c++) {
+                for (let c = 0; c < this._points[v].length; c++) {
                     colorMode(HSB, 100);
                     strokeWeight(v);
                     stroke(this._color, map(v, 0, this._levels, 100, 50), map(v, 0, this._levels, 100, 0));
-                    line(this.points[v][c].l.x, this.points[v][c].l.y, this.points[v][c].c.x, this.points[v][c].c.y);
+                    line(this._points[v][c].l.x, this._points[v][c].l.y, this._points[v][c].c.x, this._points[v][c].c.y);
                 }
             }
         }
